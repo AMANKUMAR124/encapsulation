@@ -1,0 +1,244 @@
+1. What is Encapsulation in Java? Why is it called Data Hiding?
+Encapsulation is one of the core concepts of Object-Oriented Programming (OOP) in Java. It is the technique of bundling the data (variables) and methods (functions) that operate on the data into a single unit or class. In Java, encapsulation is implemented using private access modifiers for variables and public access methods (getters and setters).
+
+Why is it called Data Hiding?
+
+Encapsulation is called data hiding because it restricts direct access to the internal data (variables) of an object. The data can only be accessed or modified using getter and setter methods, ensuring that it is protected from unauthorized access or modification. This helps in controlling how the data is accessed and modified.
+Example:
+
+java
+Copy code
+class Person {
+    // Private variables - data hiding
+    private String name;
+    private int age;
+
+    // Getter method
+    public String getName() {
+        return name;
+    }
+
+    // Setter method
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter method
+    public int getAge() {
+        return age;
+    }
+
+    // Setter method
+    public void setAge(int age) {
+        if (age > 0) {  // Validation can be added
+            this.age = age;
+        }
+    }
+}
+
+public class EncapsulationExample {
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.setName("John Doe");
+        person.setAge(25);
+
+        System.out.println("Name: " + person.getName());
+        System.out.println("Age: " + person.getAge());
+    }
+}
+Output:
+
+makefile
+Copy code
+Name: John Doe
+Age: 25
+Explanation:
+
+The data (name and age) is encapsulated within the Person class and cannot be directly accessed. We use getter and setter methods to interact with the data.
+2. What are the Important Features of Encapsulation?
+The main features of encapsulation are:
+
+Data Hiding: Internal object data is hidden from outside manipulation. Access is provided only through methods.
+Access Control: By using access modifiers (private, public, protected), you can restrict access to variables and methods.
+Modification Flexibility: You can change internal implementation without affecting external code that uses the class, as it only interacts with the public methods.
+Code Maintainability: Encapsulation helps keep the code clean, organized, and easier to maintain, as the object’s internal state is protected.
+3. What are Getter and Setter Methods in Java? Explain with an Example.
+Getter methods are used to retrieve the value of a private variable, while setter methods are used to set or modify the value of a private variable.
+
+Example:
+
+java
+Copy code
+class Car {
+    private String model;
+    private int year;
+
+    // Getter method for 'model'
+    public String getModel() {
+        return model;
+    }
+
+    // Setter method for 'model'
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    // Getter method for 'year'
+    public int getYear() {
+        return year;
+    }
+
+    // Setter method for 'year'
+    public void setYear(int year) {
+        if (year > 0) {  // Validation check
+            this.year = year;
+        }
+    }
+}
+
+public class GetterSetterExample {
+    public static void main(String[] args) {
+        Car car = new Car();
+        car.setModel("Toyota");
+        car.setYear(2020);
+
+        System.out.println("Car Model: " + car.getModel());
+        System.out.println("Car Year: " + car.getYear());
+    }
+}
+Output:
+
+yaml
+Copy code
+Car Model: Toyota
+Car Year: 2020
+Explanation:
+
+The model and year variables are private and cannot be accessed directly. Instead, the getModel() and getYear() methods allow access to the values, while the setModel() and setYear() methods are used to modify the values.
+4. What is the Use of this Keyword? Explain with an Example.
+In Java, the this keyword is a reference variable used to refer to the current object of a class. It is often used to differentiate between instance variables and local variables when they have the same name, or to invoke the current object's methods.
+
+Example:
+
+java
+Copy code
+class Student {
+    private String name;
+    private int age;
+
+    // Constructor with 'this' to refer to instance variables
+    public Student(String name, int age) {
+        this.name = name;  // 'this' refers to the instance variable
+        this.age = age;    // 'this' refers to the instance variable
+    }
+
+    public void display() {
+        System.out.println("Name: " + this.name);
+        System.out.println("Age: " + this.age);
+    }
+}
+
+public class ThisKeywordExample {
+    public static void main(String[] args) {
+        Student student = new Student("Alice", 22);
+        student.display();
+    }
+}
+Output:
+
+makefile
+Copy code
+Name: Alice
+Age: 22
+Explanation:
+
+The this keyword is used to refer to the current instance of the class. It differentiates between the class instance variable and the constructor parameter, which have the same name.
+5. What is the Advantage of Encapsulation?
+The advantages of encapsulation include:
+
+Control Over Data: The data can be accessed or modified only through methods (getters and setters), ensuring that invalid or inappropriate changes are not made.
+Flexibility: If internal class details change, only the methods need to be modified, not the code that uses the class.
+Easier Maintenance: By keeping data and methods together in a class, encapsulation helps in keeping the code organized and easier to maintain.
+Increased Security: Sensitive data can be hidden, and access can be controlled by adding validation inside setter methods.
+6. How to Achieve Encapsulation in Java? Give an Example.
+To achieve encapsulation in Java, follow these steps:
+
+Declare the variables as private.
+Provide public getter and setter methods to access and modify the private variables.
+Example:
+
+java
+Copy code
+class Account {
+    // Private variables
+    private String accountHolder;
+    private double balance;
+
+    // Constructor
+    public Account(String accountHolder, double balance) {
+        this.accountHolder = accountHolder;
+        this.balance = balance;
+    }
+
+    // Getter method for account holder
+    public String getAccountHolder() {
+        return accountHolder;
+    }
+
+    // Setter method for account holder
+    public void setAccountHolder(String accountHolder) {
+        this.accountHolder = accountHolder;
+    }
+
+    // Getter method for balance
+    public double getBalance() {
+        return balance;
+    }
+
+    // Setter method for balance with validation
+    public void setBalance(double balance) {
+        if (balance > 0) {
+            this.balance = balance;
+        }
+    }
+
+    // Method to deposit money
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    // Method to withdraw money
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        }
+    }
+}
+
+public class EncapsulationExample {
+    public static void main(String[] args) {
+        Account account = new Account("John Doe", 1000);
+        System.out.println("Account Holder: " + account.getAccountHolder());
+        System.out.println("Initial Balance: " + account.getBalance());
+
+        // Deposit and withdraw
+        account.deposit(500);
+        account.withdraw(200);
+        
+        System.out.println("Updated Balance: " + account.getBalance());
+    }
+}
+Output:
+
+yaml
+Copy code
+Account Holder: John Doe
+Initial Balance: 1000.0
+Updated Balance: 1300.0
+Explanation:
+
+The account details are encapsulated within the Account class.
+External code can only access and modify the data through the public methods (getBalance, setBalance, etc.).
+This ensures data integrity and control over how the variables are accessed and modified.
